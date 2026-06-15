@@ -19,6 +19,7 @@ for (const col of columns) {
   const numericValues = rawValues.map(v => parseFloat(v)).filter(v => !isNaN(v));
 
   if (numericValues.length === rawValues.length) {
+    // Все значения числовые
     numericStats[col] = {
       count: numericValues.length,
       min: Math.min(...numericValues).toFixed(2),
@@ -26,6 +27,7 @@ for (const col of columns) {
       mean: (numericValues.reduce((a, b) => a + b, 0) / numericValues.length).toFixed(2),
     };
   } else {
+
     const freq = {};
     for (const v of rawValues) {
       freq[v] = (freq[v] || 0) + 1;
@@ -34,98 +36,59 @@ for (const col of columns) {
   }
 }
 
-// Генерируем HTML-таблицу для числовых колонок
-const numericRows = Object.entries(numericStats)
-  .map(([col, s]) => `
-    <tr>
-      <td>${col}</td>
-      <td>${s.count}</td>
-      <td>${s.min}</td>
-      <td>${s.max}</td>
-      <td>${s.mean}</td>
-    </tr>
-  `)
-  .join('');
+const numericRows = Object.entries(numericStats).map(([col, s]) => `
+  <tr>
+    <td>${col}</td>
+    <td>${s.count}</td>
+    <td>${s.min}</td>
+    <td>${s.max}</td>
+    <td>${s.mean}</td>
+  </tr>`).join('');
 
 const numericTable = `
   <h2>Числовые колонки</h2>
-  <table border="1" style="border-collapse: collapse; margin: 10px 0;">
+  <table>
     <thead>
-      <tr style="background-color: #f2f2f2;">
-        <th style="padding: 8px; border: 1px solid #ddd;">Колонка</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Min</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Max</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Среднее</th>
-      </tr>
+      <tr><th>Колонка</th><th>Кол-во</th><th>Min</th><th>Max</th><th>Среднее</th></tr>
     </thead>
-    <tbody>
-      ${numericRows || '<tr><td colspan="5" style="padding: 8px; text-align: center;">Нет числовых колонок</td></tr>'}
-    </tbody>
-  </table>
-`;
+    <tbody>${numericRows || '<tr><td colspan="5">Нет числовых колонок</td></tr>'}</tbody>
+  </table>`;
 
-// Генерируем HTML-таблицы для категориальных колонок
-const categoricalTables = Object.entries(categoricalStats)
-  .map(([col, freq]) => {
-    const freqRows = Object.entries(freq)
-      .sort((a, b) => b[1] - a[1])
-      .map(([val, cnt]) => `
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">${val}</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">${cnt}</td>
-        </tr>
-      `)
-      .join('');
-    
-    return `
-      <h2>Колонка: ${col}</h2>
-      <table border="1" style="border-collapse: collapse; margin: 10px 0;">
-        <thead>
-          <tr style="background-color: #f2f2f2;">
-            <th style="padding: 8px; border: 1px solid #ddd;">Значение</th>
-            <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${freqRows}
-        </tbody>
-      </table>
-    `;
-  })
-  .join('');
+const categoricalTables = Object.entries(categoricalStats).map(([col, freq]) => {
+  const freqRows = Object.entries(freq)
+    .sort((a, b) => b[1] - a[1])
+    .map(([val, cnt]) => `<tr><td>${val}</td><td>${cnt}</td></tr>`)
+    .join('');
+  return `
+  <h2>Колонка: ${col}</h2>
+  <table>
+    <thead><tr><th>Значение</th><th>Кол-во</th></tr></thead>
+    <tbody>${freqRows}</tbody>
+  </table>`;
+}).join('');
 
-const html = `
-<!DOCTYPE html>
+
+const html = `<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Отчёт по данным</title>
+  <title>Отчёт</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
-    }
-    h1 {
-      color: #333;
-    }
-    h2 {
-      color: #555;
-      margin-top: 30px;
-    }
+    body { font-family: sans-serif; padding: 2rem; max-width: 900px; margin: auto; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+    th { background: #f0f0f0; }
+    h1 { color: #333; }
+    h2 { color: #555; margin-top: 2rem; }
   </style>
 </head>
 <body>
-  <h1>📊 Отчёт по данным</h1>
-  <p><strong>Всего строк:</strong> ${records.length}</p>
-  
+  <h1>Отчёт по данным</h1>
+  <p>Всего строк: <strong>${records.length}</strong></p>
   ${numericTable}
   ${categoricalTables}
 </body>
-</html>
-`;
+</html>`;
 
 fs.writeFileSync('/data/report.html', html);
 console.log('Отчёт сохранён: /data/report.html');

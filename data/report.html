@@ -1,138 +1,52 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Отчёт по данным</title>
+  <title>Отчёт</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f9f9f9;
-    }
-    h1 {
-      color: #333;
-    }
-    h2 {
-      color: #555;
-      margin-top: 30px;
-    }
+    body { font-family: sans-serif; padding: 2rem; max-width: 900px; margin: auto; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 8px 12px; text-align: left; }
+    th { background: #f0f0f0; }
+    h1 { color: #333; }
+    h2 { color: #555; margin-top: 2rem; }
   </style>
 </head>
 <body>
-  <h1>📊 Отчёт по данным</h1>
-  <p><strong>Всего строк:</strong> 100</p>
-  
+  <h1>Отчёт по данным</h1>
+  <p>Всего строк: <strong>100</strong></p>
   
   <h2>Числовые колонки</h2>
-  <table border="1" style="border-collapse: collapse; margin: 10px 0;">
+  <table>
     <thead>
-      <tr style="background-color: #f2f2f2;">
-        <th style="padding: 8px; border: 1px solid #ddd;">Колонка</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Min</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Max</th>
-        <th style="padding: 8px; border: 1px solid #ddd;">Среднее</th>
-      </tr>
+      <tr><th>Колонка</th><th>Кол-во</th><th>Min</th><th>Max</th><th>Среднее</th></tr>
     </thead>
     <tbody>
-      
-    <tr>
-      <td>year</td>
-      <td>100</td>
-      <td>2010.00</td>
-      <td>2024.00</td>
-      <td>2017.40</td>
-    </tr>
-  
-    <tr>
-      <td>price</td>
-      <td>100</td>
-      <td>5820.26</td>
-      <td>49687.38</td>
-      <td>29359.55</td>
-    </tr>
-  
-    </tbody>
+  <tr>
+    <td>year</td>
+    <td>100</td>
+    <td>2010.00</td>
+    <td>2024.00</td>
+    <td>2016.55</td>
+  </tr>
+  <tr>
+    <td>price</td>
+    <td>100</td>
+    <td>5102.11</td>
+    <td>49898.24</td>
+    <td>26322.82</td>
+  </tr></tbody>
   </table>
-
   
-      <h2>Колонка: BRAND</h2>
-      <table border="1" style="border-collapse: collapse; margin: 10px 0;">
-        <thead>
-          <tr style="background-color: #f2f2f2;">
-            <th style="padding: 8px; border: 1px solid #ddd;">Значение</th>
-            <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Lada</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">23</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Ford</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">22</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Tesla</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">22</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Toyota</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">19</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">BMW</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">14</td>
-        </tr>
-      
-        </tbody>
-      </table>
-    
-      <h2>Колонка: color</h2>
-      <table border="1" style="border-collapse: collapse; margin: 10px 0;">
-        <thead>
-          <tr style="background-color: #f2f2f2;">
-            <th style="padding: 8px; border: 1px solid #ddd;">Значение</th>
-            <th style="padding: 8px; border: 1px solid #ddd;">Кол-во</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Black</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">25</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Silver</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">21</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Red</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">18</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">Blue</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">18</td>
-        </tr>
-      
-        <tr>
-          <td style="padding: 8px; border: 1px solid #ddd;">White</td>
-          <td style="padding: 8px; border: 1px solid #ddd;">18</td>
-        </tr>
-      
-        </tbody>
-      </table>
-    
+  <h2>Колонка: BRAND</h2>
+  <table>
+    <thead><tr><th>Значение</th><th>Кол-во</th></tr></thead>
+    <tbody><tr><td>Ford</td><td>28</td></tr><tr><td>Tesla</td><td>22</td></tr><tr><td>Toyota</td><td>19</td></tr><tr><td>Lada</td><td>19</td></tr><tr><td>BMW</td><td>12</td></tr></tbody>
+  </table>
+  <h2>Колонка: color</h2>
+  <table>
+    <thead><tr><th>Значение</th><th>Кол-во</th></tr></thead>
+    <tbody><tr><td>Black</td><td>30</td></tr><tr><td>White</td><td>24</td></tr><tr><td>Red</td><td>20</td></tr><tr><td>Silver</td><td>15</td></tr><tr><td>Blue</td><td>11</td></tr></tbody>
+  </table>
 </body>
 </html>
